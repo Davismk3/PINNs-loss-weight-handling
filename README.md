@@ -1,2 +1,101 @@
-# PINN-loss-weight-handling
+# Loss Handling (PINN)
+
 Physics-Informed Neural Network (PINN) training code for a 1D PDE with learnable coefficients and adaptive loss weighting.
+
+## Problem
+
+The project targets:
+
+\[
+-\nabla \cdot (a \nabla u(x)) + b\,u(x) = f(x)
+\]
+
+where `a` and `b` are learned during training.
+
+## Repository Layout
+
+```text
+.
+├── main.py              # entrypoint
+├── training.py          # training loop + optimizers
+├── architecture.py      # Fourier features + PINN + trial function
+├── loss.py              # physics/data residual definitions
+├── loss_schemes.py      # baseline + gradient-normalized loss modes
+├── params.py            # data loading + trainable parameters
+├── config.py            # experiment configuration
+├── paths.py             # project path helpers
+├── plot.py              # live plotting during training
+└── data/
+    ├── data.csv
+    └── parameters.yaml
+```
+
+## Requirements
+
+- Python 3.10+
+- PyTorch
+- pandas
+- matplotlib
+- PyYAML
+
+Install dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install torch pandas matplotlib pyyaml
+```
+
+## Run
+
+```bash
+python main.py
+```
+
+`main.py` selects device in this order when `USE_GPU=True`:
+
+1. Apple Metal (`mps`)
+2. CUDA
+3. CPU fallback
+
+## Configuration
+
+Edit [`config.py`](./config.py) to control training:
+
+- `EPOCHS_ADAM`: number of optimization steps
+- `LEARNING_RATE_PINN`: learning rate for network + PDE coefficients
+- `SPATIAL_ADAPTIVE_WEIGHTS`: enables trainable per-point lambda weights
+- `GLOBAL_ADAPTIVE_WEIGHTS`: switches to gradient-normalization loss scheme
+- `VISUALIZATION_STEP`: plotting frequency
+- `A`, `B`: boundary values used in the trial function
+
+## Data Format
+
+`data/data.csv` must include:
+
+- `x`: spatial coordinate
+- `u`: observed solution value
+
+Current sample:
+
+```csv
+x,u
+0.9,1.0
+0.4,0.1
+```
+
+## Notes
+
+- Coefficients `a` and `b` are optimized jointly with network weights.
+- The forcing term is currently defined in `params.py` as:
+  `f(x) = -100 * (x - 1) * x**10`
+- Live plots are generated during training via `matplotlib`.
+
+## Suggested GitHub Cleanup Before Push
+
+Add a `.gitignore` for local artifacts such as:
+
+- `__pycache__/`
+- `.DS_Store`
+- `.venv/`
+
