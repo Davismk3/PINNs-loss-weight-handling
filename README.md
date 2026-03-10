@@ -10,9 +10,9 @@ The codebase is designed as a modular experimentation framework for studying how
 
 The project targets:
 
-\[
--\nabla \cdot (a \nabla u(x)) + b\,u(x) = f(x)
-\]
+$$
+-\nabla \cdot (a \nabla u(x)) + b \cdot u(x) = f(x)
+$$
 
 where `a` and `b` are learned during training.
 
