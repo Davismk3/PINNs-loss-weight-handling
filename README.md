@@ -1,6 +1,10 @@
 # Loss Handling (PINN)
 
-Physics-Informed Neural Network (PINN) training code for a 1D PDE with learnable coefficients and adaptive loss weighting.
+Adaptive Loss Strategies for Physics-Informed Neural Networks
+
+This repository implements and compares multiple loss balancing and adaptive weighting strategies for training Physics-Informed Neural Networks (PINNs). These methods address a key challenge in PINN training: competing loss terms arising from physics residuals, boundary conditions, and observational data.
+
+The codebase is designed as a modular experimentation framework for studying how different weighting schemes affect convergence, stability, and solution accuracy in PDE-constrained learning problems.
 
 ## Problem
 
