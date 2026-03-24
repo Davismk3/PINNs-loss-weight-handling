@@ -16,6 +16,10 @@ $$
 
 where `a` and `b` are learned during training.
 
+## Results
+
+Results show that gradient-normalized global self-adaptive weighting significantly outperforms fixed or unweighted schemes, while spatially adaptive weighting provides a small additional improvement. 
+
 ## Repository Layout
 
 ```text
