@@ -20,6 +20,11 @@ where `a` and `b` are learned during training.
 
 Results show that gradient-normalized global self-adaptive weighting significantly outperforms fixed or unweighted schemes, while spatially adaptive weighting provides a small additional improvement. 
 
+Without any weighting scheme, the model converges at around 2000 epochs.
+With both of the above mentioned weighting schemes present, the model converges at around 200 epochs.
+
+These schemes have been tested and provided similar results on more complicated systems of PDEs in the PINNs-MSBM respository. The gradient-normalization scheme in particular provides a clean and quick convergance despite multiple competing loss terms.
+
 ## Repository Layout
 
 ```text
