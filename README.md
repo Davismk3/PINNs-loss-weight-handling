@@ -103,12 +103,3 @@ x,u
 - The forcing term is currently defined in `params.py` as:
   `f(x) = -100 * (x - 1) * x**10`
 - Live plots are generated during training via `matplotlib`.
-
-## Suggested GitHub Cleanup Before Push
-
-Add a `.gitignore` for local artifacts such as:
-
-- `__pycache__/`
-- `.DS_Store`
-- `.venv/`
-
