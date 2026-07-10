@@ -6,6 +6,8 @@ This repository implements and compares multiple loss balancing and adaptive wei
 
 The codebase is designed as a modular experimentation framework for studying how different weighting schemes affect convergence, stability, and solution accuracy in PDE-constrained learning problems.
 
+For example, we noticed that spatially self adaptive loss weighting increases performance for our 1D cases, but decreases performance for more complex geometries in higher dimensions, such as out 2D bifurcation case.  
+
 ## Problem
 
 The project targets:
